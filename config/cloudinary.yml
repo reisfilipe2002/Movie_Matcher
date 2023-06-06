@@ -1,0 +1,23 @@
+development:
+  cloud_name: 'sua-cloud-name'
+  api_key: 'sua-api-key'
+  api_secret: 'sua-api-secret'
+  secure: true
+  enhance_image_tag: true
+  static_image_support: true
+
+test:
+  cloud_name: 'sua-cloud-name'
+  api_key: 'sua-api-key'
+  api_secret: 'sua-api-secret'
+  secure: true
+  enhance_image_tag: true
+  static_image_support: true
+
+production:
+  cloud_name: 'sua-cloud-name'
+  api_key: 'sua-api-key'
+  api_secret: 'sua-api-secret'
+  secure: true
+  enhance_image_tag: true
+  static_image_support: true
