@@ -1,0 +1,9 @@
+<h1>Recommendations</h1>
+
+<% @recommendations.each do |recommendation| %>
+  <h3><%= recommendation.title %></h3>
+  <p><%= recommendation.description %></p>
+  <p>IMDb Reference: <%= recommendation.imdb_reference %></p>
+  <p>User Reference: <%= recommendation.user_reference %></p>
+  <hr>
+<% end %>
