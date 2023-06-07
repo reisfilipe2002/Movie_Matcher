@@ -1,9 +1,11 @@
 <h1>Favorite Movies</h1>
 
-<% @favorite_movies.each do |favorite_movie| %>
-  <h3><%= favorite_movie.title %></h3>
-  <p><%= favorite_movie.description %></p>
-  <p>IMDb Reference: <%= favorite_movie.imdb_reference %></p>
-  <p>User Reference: <%= favorite_movie.user_reference %></p>
-  <hr>
+<% if @favorite_movies.nil? || @favorite_movies.empty? %>
+  <p>Ainda não há filmes favoritos para exibir.</p>
+<% else %>
+  <% @favorite_movies.each do |favorite_movie| %>
+    <h3><%= favorite_movie.title %></h3>
+    <p><%= favorite_movie.description %></p>
+    <p>IMDb Reference: <%= favorite_movie.imdb_reference %></p>
+  <% end %>
 <% end %>

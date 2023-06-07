@@ -1,0 +1,100 @@
+.login-container .form-inputs .remember-me {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.login-container .form-inputs .remember-me .checkbox {
+  margin-right: 10px;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+}
+
+.login-container .form-actions {
+  margin-top: 20px;
+}
+
+.login-container .form-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-container .form-inputs .remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.login-container .form-inputs .remember-me .checkbox {
+  margin-right: 10px;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.signup-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.signup-heading {
+  margin-bottom: 20px;
+}
+
+.form-inputs {
+  margin-bottom: 20px;
+}
+
+.form-actions {
+  margin-top: 20px;
+}
+
+.btn-signup {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4F95DA;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-signup:hover {
+  background-color: #3775B3;
+}
+
+.form-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form-links a {
+  color: #4F95DA;
+  text-decoration: none;
+}
+
+.form-links a:hover {
+  text-decoration: underline;
+}
