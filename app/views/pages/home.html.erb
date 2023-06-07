@@ -1,2 +1,27 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>What you want to watch today ?</h1>
+
+<%# <%= simple_form_for movies_path do |f|%>
+  <%# <p>
+    <%= %>
+    <%# <%= submit_tag "Search", name: nil %>
+  <%# </p> %>
+<%= form_with(url: '/chat', method: :post) do |form| %>
+  <%= form.text_field :message, placeholder: 'Enter your message' %>
+  <%= form.submit 'Send' %>
+<% end %>
+<div id="chat-response"></div>
+<script>
+  // Optional JavaScript to display the chat response dynamically
+  const chatResponseElement = document.getElementById('chat-response');
+  const form = document.querySelector('form');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const response = await fetch('/chat', {
+      method: 'POST',
+      body: formData,
+    });
+    const responseData = await response.text();
+    chatResponseElement.innerHTML = responseData;
+  });
+</script>
