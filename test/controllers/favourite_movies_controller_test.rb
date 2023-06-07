@@ -6,8 +6,5 @@ class FavouriteMoviesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get imdb:references" do
-    get favourite_movies_imdb:references_url
-    assert_response :success
-  end
+
 end
