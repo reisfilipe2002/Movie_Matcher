@@ -1,6 +1,6 @@
 class FavouriteMoviesController < ApplicationController
   def index
-    @favourite_movies = favouriteMovie.all
+    @favourite_movies = FavouriteMovie.all
   end
 
   def show
