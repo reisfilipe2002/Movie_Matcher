@@ -1,5 +1,6 @@
 class FavouriteMoviesController < ApplicationController
   def index
+    @movies = Movie.all
     @favourite_movies = FavouriteMovie.where(user_id: current_user.id)
   end
 
@@ -9,12 +10,17 @@ class FavouriteMoviesController < ApplicationController
 
   def new
     @favourite_movie = FavouriteMovie.new
+    @movies = Movie.all
+    if params[:query].present?
+      @movies = @movies.where("title ILIKE ?", "%#{params[:query]}%")
+    end
   end
 
   def create
-    @favourite_movie = favouriteMovie.new(favourite_movie_params)
+    @movie = Movie.find(params[:favourite_movie][:movie_id])
+    @favourite_movie = FavouriteMovie.new(user: current_user, movie: @movie)
     if @favourite_movie.save
-      redirect_to @favourite_movie, notice: 'favourite movie was successfully created.'
+      redirect_to selection_path(current_user), notice: 'favourite movie was successfully created.'
     else
       render :new
     end
@@ -42,6 +48,6 @@ class FavouriteMoviesController < ApplicationController
   private
 
   def favourite_movie_params
-    params.require(:favourite_movie).permit(:title, :description, :user_id)
+    params.require(:favourite_movie).permit(:title, :description, :user_id, :movie_id)
   end
 end
