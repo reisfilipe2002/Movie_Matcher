@@ -1,23 +1,15 @@
-<h1>New Recommendation</h1>
-
-<%= form_with(model: @recommendation, url: recommendations_path) do |form| %>
-  <div>
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+<div class="recommendation-new">
+  <div class="container">
+    <form class="form">
+      <div class="form-input">
+        <label class="form-label" for="input-title">Título:</label>
+        <input class="form-input-text" type="text" id="input-title" name="title">
+      </div>
+      <div class="form-input">
+        <label class="form-label" for="input-description">Descrição:</label>
+        <input class="form-input-text" type="text" id="input-description" name="description">
+      </div>
+      <button class="form-button" type="submit">Enviar</button>
+    </form>
   </div>
-
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-
-  <div>
-    <%= form.label :user_reference %>
-    <%= form.text_field :user_reference %>
-  </div>
-
-  <div>
-    <%= form.submit "Create Recommendation" %>
-  </div>
-<% end %>
+</div>
