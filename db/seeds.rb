@@ -7,7 +7,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'csv'
 
-
 # Specify the path to your CSV file
 csv_file_path = '/home/reisfilipe/code/reisfilipe2002/Movie_Matcher/movies.csv'
 
