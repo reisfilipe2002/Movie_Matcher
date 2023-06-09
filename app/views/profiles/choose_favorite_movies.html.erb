@@ -1,0 +1,13 @@
+<h2 class="text-center mb-3">It's time to help us best select movies for you</h2>
+
+<h4 class="text-center">What are your favorite movies?</h4>
+
+<%= form_with url: selection_path, method: :get, html: {class: "mb-4"} do |f| %>
+  <%= f.label :query, "Type a movie title" %>
+  <%= f.text_field :query,
+              class: "form-control",
+              value: params[:query]
+              %>
+<% end %>
+
+<%= render "list", movies: @movies%>
