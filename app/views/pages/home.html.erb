@@ -1,7 +1,8 @@
 <h1>What you want to watch today?</h1>
 
 <%= form_with(url: '/chat', method: :post) do |form| %>
-  <%= form.text_field :message, placeholder: 'Enter your message' %>
+  <%= form.text_field :genre, label: "What genre you want to watch to day?"  %>
+  <%= form.text_field :duration, label: "How important duration is for you?" %>
   <%= form.submit 'Send' %>
 <% end %>
 <div id="chat-response"></div>
@@ -38,7 +39,9 @@
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const response = await fetch('/chat', {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    formData.append('authenticity_token', csrfToken);
+    const response = await fetch('/chats', {
       method: 'POST',
       body: formData,
     });
