@@ -7,10 +7,12 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'csv'
 
+# Specify the path to your CSV file
+csv_file_path = '/home/reisfilipe/code/reisfilipe2002/Movie_Matcher/movies.csv'
 
 # Open the CSV file and iterate over each row
-csv_text = File.read(Rails.root.join('db', 'movies.csv'))
-CSV.foreach(csv_text, headers: true).with_index(1) do |row, index|
+
+CSV.foreach(csv_file_path, headers: true).with_index(1) do |row, index|
   # Access data in each row using column names or indices
   break if index > 200
 
