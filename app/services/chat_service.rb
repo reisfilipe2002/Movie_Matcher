@@ -17,3 +17,4 @@ class ChatService
     response['choices'].first['message']['content']
   end
 end
+ 
