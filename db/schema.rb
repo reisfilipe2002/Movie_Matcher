@@ -9,11 +9,10 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-# comentado por ter dado conflito
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_151149) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_08_210939) do
   # These are extensions that must be enabled in order to support this database
-  # enable_extension "plpgsql"
+  enable_extension "plpgsql"
 
   create_table "favourite_movies", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -28,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_151149) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "poster_url"
   end
 
   create_table "recommendations", force: :cascade do |t|
