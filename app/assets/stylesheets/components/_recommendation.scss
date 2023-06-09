@@ -1,0 +1,105 @@
+// Estilos personalizados para a página "show" de recommendation
+.recommendation-show {
+  .container {
+    //background-color: #F0F0F0;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+}
+
+// Estilos personalizados para a página "new" de recommendation
+.recommendation-new {
+  .container {
+    //background-color: #FFF;
+    padding: 20px;
+  }
+
+  .form {
+    margin-bottom: 20px;
+  }
+
+  .form-input {
+    margin-bottom: 10px;
+  }
+
+  .form-label {
+    font-weight: bold;
+  }
+
+  .form-input-text {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+  }
+
+  .form-button {
+    background-color: #007BFF;
+    color: #FFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+// Estilos personalizados para a página "index" de recommendation
+.recommendation-index {
+  .container {
+    //background-color: #F8F8F8;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Exibir 4 colunas com largura igual */
+    grid-gap: 20px; /* Espaço entre os grid items */
+  }
+
+  .recommendation-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .list-item {
+    background-color: #FFF;
+    padding: 30px;
+    border-radius: 4px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .item-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+
+  .item-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  .item-link {
+    color: #007BFF;
+    text-decoration: none;
+  }
+}

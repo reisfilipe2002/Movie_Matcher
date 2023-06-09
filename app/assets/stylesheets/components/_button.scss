@@ -27,3 +27,18 @@
   height: 100%;
   transform: translateY(100%);
 }
+
+.home-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 450px; /* Ajuste conforme necessário para definir a distância entre os cards e o botão */
+}
