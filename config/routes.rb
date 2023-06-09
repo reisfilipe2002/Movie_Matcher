@@ -1,17 +1,7 @@
 Rails.application.routes.draw do
-  resources :recommendations do
-    collection do
-      get 'imdb/:reference', action: 'imdb', as: 'imdb'
-      get 'user/:reference', action: 'user', as: 'user'
-    end
-  end
+  resources :recommendations, only: [:index, :show, :new, :create]
 
-  resources :favourite_movies, param: :reference do
-    collection do
-      get 'imdb/:reference', action: 'imdb', as: 'imdb'
-      get 'user/:reference', action: 'user', as: 'user'
-    end
-  end
+  resources :favourite_movies
 
   devise_for :users
   root to: "pages#home"
@@ -19,4 +9,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  post 'chat', to: 'chats#create'
 end

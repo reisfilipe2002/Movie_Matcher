@@ -1,14 +1,14 @@
 class FavouriteMoviesController < ApplicationController
   def index
-    @favourite_movies = favouriteMovie.all
+    @favourite_movies = FavouriteMovie.where(user_id: current_user.id)
   end
 
   def show
-    @favourite_movie = favouriteMovie.find(params[:id])
+    @favourite_movie = FavouriteMovie.find(params[:id])
   end
 
   def new
-    @favourite_movie = favouriteMovie.new
+    @favourite_movie = FavouriteMovie.new
   end
 
   def create
@@ -21,11 +21,11 @@ class FavouriteMoviesController < ApplicationController
   end
 
   def edit
-    @favourite_movie = favouriteMovie.find(params[:id])
+    @favourite_movie = FavouriteMovie.find(params[:id])
   end
 
   def update
-    @favourite_movie = favouriteMovie.find(params[:id])
+    @favourite_movie = FavouriteMovie.find(params[:id])
     if @favourite_movie.update(favourite_movie_params)
       redirect_to @favourite_movie, notice: 'favourite movie was successfully updated.'
     else
@@ -42,6 +42,6 @@ class FavouriteMoviesController < ApplicationController
   private
 
   def favourite_movie_params
-    params.require(:favourite_movie).permit(:title, :description, :imdb_reference, :user_reference)
+    params.require(:favourite_movie).permit(:title, :description, :user_id)
   end
 end
