@@ -36,8 +36,8 @@
   flex-direction: column;
   justify-content: center;
 }
-.mobile-bottom-nav__item--active {
-  color: red;
+.mobile-bottom-nav__item {
+  color: rgb(0, 0, 0);
 }
 .mobile-bottom-nav__item-content {
   display: flex;
