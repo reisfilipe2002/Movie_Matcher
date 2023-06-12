@@ -8,7 +8,7 @@
 require 'csv'
 
 # Specify the path to your CSV file
-csv_file_path = '/home/reisfilipe/code/reisfilipe2002/Movie_Matcher/movies.csv'
+csv_file_path = 'db/data/movies.csv'
 
 # Open the CSV file and iterate over each row
 
