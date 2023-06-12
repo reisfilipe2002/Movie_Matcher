@@ -1,1 +1,1 @@
-Tmdb::Api.key("208633d174cfb8bf07719724e6ee977d")
+Tmdb::Api.key(ENV['TMDB_API_KEY'])

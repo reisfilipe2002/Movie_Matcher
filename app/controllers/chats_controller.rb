@@ -22,16 +22,23 @@ class ChatsController < ApplicationController
     A. #{params[:genre]}
     2. Q. How important is the duration of the movie for you?
     A. #{params[:duration]}
-    I want your answer to be a list always formated this way Film: [Recommendation 1]
-    Genre: [Genre]
-    Year: [Year]
-    Director: [Director]
-    Main Cast: [Main Cast]
-    Awards: [Awards]
-    Rating: [Rating]
-    Runtime: [Runtime] minutes"
+    I want your answer to be a list always formated like this:
+    1.Title of the movie;
+    2.Title of the movie;
+    3.Title of the movie;
+    4.Title of the movie;
+    5.Title of the movie;"
       @response = chat_service.chat(@message)
       render plain: @response
     end
   end
 end
+
+
+
+
+# response.parse()
+
+
+
+# aamawopmwfpo <3
