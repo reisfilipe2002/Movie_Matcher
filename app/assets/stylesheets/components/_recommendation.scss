@@ -62,7 +62,7 @@
 
 // Estilos personalizados para a página "index" de recommendation
 .recommendation-index {
-  .container {
+  .list-items {
     //background-color: #F8F8F8;
     padding: 20px;
     display: grid;
@@ -73,14 +73,16 @@
   .recommendation-title {
     font-size: 24px;
     font-weight: bold;
-    margin-top: 50px;
+    margin-top: 40px;
     text-align: center;
     width: 100%;
   }
 
   .list-item {
     background-color: #FFF;
-    padding: 30px;
+    padding: 20px;
+    margin: auto;
+    width: 300px;
     border-radius: 4px;
     text-align: left;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -101,5 +103,16 @@
   .item-link {
     color: #007BFF;
     text-decoration: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .recommendation-index {
+    .list-items {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr); /* Exibir 1 coluna com largura igual */
+      grid-gap: 20px; /* Espaço entre os grid items */
+    }
   }
 }
