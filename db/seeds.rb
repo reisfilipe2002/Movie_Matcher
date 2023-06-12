@@ -8,7 +8,7 @@
 require 'csv'
 
 # Specify the path to your CSV file
-csv_file_path = '/home/reisfilipe/code/reisfilipe2002/Movie_Matcher/movies.csv'
+csv_file_path = 'db/data/movies.csv'
 
 # Open the CSV file and iterate over each row
 
@@ -18,8 +18,18 @@ CSV.foreach(csv_file_path, headers: true).with_index(1) do |row, index|
 
   column2 = row['title']
   title = column2.split('(')[0].strip
-  movie_id_tmdb = Tmdb::Movie.find(title)
-  poster = Tmdb::Movie.images(movie_id_tmdb[0].id)["posters"]
-  poster_path = "https://image.tmdb.org/t/p/w300#{poster["file_path"]}"
-  Movie.create!(title: title, poster_url: poster_path)
+  if title.include?("The")
+    title = title.sub(/^(.*), The$/, 'The \1')
+  end
+  movie_results = Tmdb::Movie.search(title)
+
+  unless movie_results.empty?
+    movie_id_tmdb = movie_results.first.id
+    posters = Tmdb::Movie.images(movie_id_tmdb)["posters"]
+
+    unless posters.empty?
+      poster_path = "https://image.tmdb.org/t/p/w300#{posters.first['file_path']}"
+      Movie.create!(title: title, poster_url: poster_path)
+    end
+  end
 end

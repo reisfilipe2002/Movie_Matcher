@@ -1,35 +1,13 @@
 <h1>What you want to watch today?</h1>
 
 <%= form_with(url: '/chat', method: :post) do |form| %>
-  <%= form.text_field :message, placeholder: 'Enter your message' %>
-  <%= form.submit 'Send' %>
+  <%= form.label :genre, "What genre you want to watch to day?" %>
+  <%= form.text_field :genre %>
+  <%= form.label :duration, "How important duration is for you?" %>
+  <%= form.text_field :duration%>
+  <%= form.submit 'Go to Recommendations' %>
 <% end %>
 <div id="chat-response"></div>
-
-<style>
-  .button-container1 {
-    text-align: center;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 10px;
-    margin-left: 10px;
-  }
-
-  .button-container1 .btn-primary {
-    width: 200px; /* Defina o tamanho desejado para o botão */
-    line-height: 50px; /* Ajuste verticalmente o texto dentro do botão */
-  }
-
-  h1,
-  form {
-    margin-left: 10px;
-  }
-</style>
-
-<div class="button-container1">
-  <a href="/recommendations" class="btn btn-primary">Go to Recommendations</a>
-</div>
 
 <script>
   // Optional JavaScript to display the chat response dynamically
@@ -38,7 +16,9 @@
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const response = await fetch('/chat', {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    formData.append('authenticity_token', csrfToken);
+    const response = await fetch('/chats', {
       method: 'POST',
       body: formData,
     });

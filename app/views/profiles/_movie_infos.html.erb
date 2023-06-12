@@ -1,22 +1,20 @@
-<div class="movie-card">
+<div class="movie-card my-3">
   <div class="movie-infos">
-    <% if @poster_path %>
-      <%= image_tag "" %>
+    <% if movie.poster_url %>
+      <%= image_tag movie.poster_url %>
     <% else %>
       <p>No poster available</p>
     <% end %>
     <h2><%= movie.title %></h2>
   </div>
   <% if current_user.movies.include?(movie) %>
-    <%= link_to root_path, class: "btn btn-primary" do %>
-      <i class="fas fa-check"></i>
-    <% end %>
+   <button type="button" class="btn btn-lg btn-success" disabled><i class="fas fa-check"></i></button>
   <% else %>
     <%= simple_form_for @favourite_movie  do |f| %>
       <%# <%= f.association :movie, value: movie, include_hidden: true %>
       <%= f.hidden_field :movie_id, value: movie.id %>
-      <%= f.button :submit do %>
-        <i class="fas fa-plus"></i>
+      <%= button_tag :submit, class: "btn btn-primary" do %>
+        <i class="fas fa-plus" aria-hidden="true"></i>
       <% end %>
     <% end %>
   <% end %>
