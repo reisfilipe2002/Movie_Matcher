@@ -1,28 +1,36 @@
-<h1>What you want to watch today?</h1>
+ <% if user_signed_in? %>
+  <h1>What you want to watch today?</h1>
 
-<%= form_with(url: '/chat', method: :post) do |form| %>
-  <%= form.label :genre, "What genre you want to watch to day?" %>
-  <%= form.text_field :genre %>
-  <%= form.label :duration, "How important duration is for you?" %>
-  <%= form.text_field :duration%>
-  <%= form.submit 'Go to Recommendations' %>
-<% end %>
-<div id="chat-response"></div>
+  <%= form_with(url: '/chat', method: :post) do |form| %>
+    <%= form.label :genre, "What genre you want to watch to day?" %>
+    <%= form.text_field :genre %>
+    <%= form.label :duration, "How important duration is for you?" %>
+    <%= form.text_field :duration%>
+    <%= form.submit 'Go to Recommendations' %>
+  <% end %>
+  <div id="chat-response"></div>
 
-<script>
-  // Optional JavaScript to display the chat response dynamically
-  const chatResponseElement = document.getElementById('chat-response');
-  const form = document.querySelector('form');
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    formData.append('authenticity_token', csrfToken);
-    const response = await fetch('/chats', {
-      method: 'POST',
-      body: formData,
+  <script>
+    // Optional JavaScript to display the chat response dynamically
+    const chatResponseElement = document.getElementById('chat-response');
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      formData.append('authenticity_token', csrfToken);
+      const response = await fetch('/chats', {
+        method: 'POST',
+        body: formData,
+      });
+      const responseData = await response.text();
+      chatResponseElement.innerHTML = responseData;
     });
-    const responseData = await response.text();
-    chatResponseElement.innerHTML = responseData;
-  });
-</script>
+  </script>
+<% else %>
+<div class="container">
+  <h1>What you want to watch today?</h1>
+  <h3>Sign in to get recommendations</h3>
+  <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
+</div>
+<% end %>
