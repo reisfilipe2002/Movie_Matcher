@@ -87,8 +87,46 @@
 <div class="home">
   <div class="home_box">
     <h1 class="new-title-class">What you want to watch today?</h1>
-    <h3>Sign in to get recommendations</h3>
+    <h3 class="sign-in-text">Sign in to get recommendations</h3>
     <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
   </div>
 </div>
 <% end %>
+ <style>
+    /*body, html {
+      height: 100%;
+      margin: 0;''
+      padding: 0;
+    }*/
+
+  <style>
+  .home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+  }
+
+  .home_box {
+    text-align: center;
+    margin: auto;
+  }
+
+  .new-title-class {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    margin-top: 100px;
+  }
+
+  .sign-in-text {
+    margin-bottom: 20px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    position: relative;
+    line-height: 40px;
+  }
+</style>
