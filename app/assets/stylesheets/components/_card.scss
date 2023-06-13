@@ -1,0 +1,24 @@
+.movie-card {
+background-color: #fff;
+width: 225px;
+margin: 20px auto;
+border-radius: 8px;
+box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+
+img{
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+  }
+}
+
+.movie-infos {
+  display:flex;
+  justify-content: space-between;
+  padding: 12px;
+
+  h2 {
+    color: #000;
+
+  }
+
+}

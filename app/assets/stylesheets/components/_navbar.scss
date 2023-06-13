@@ -1,19 +1,17 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
+.navbar-main {
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+       width: 100%;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      height: 50px;
+      align-items: center;
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
 
-.navbar-video {
-  width: 100px; /* Defina a largura desejada */
-  height: auto; /* Mantém a proporção original do vídeo */
+  .navbar-logo {
+   height: 30px;
+   border-radius: 20%;
+  }
 }
 
 .mobile-bottom-nav {
