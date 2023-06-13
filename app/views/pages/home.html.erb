@@ -1,3 +1,4 @@
+
 <% if user_signed_in? %>
   <div class="home">
     <div class="home_box">
@@ -20,121 +21,141 @@
     </div>
   </div>
 
-  <style>
-    body, html {
-      height: 100%;
-      margin: 0;''
-      padding: 0;
-    }
-
-    .home {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 50%;
-    }
-
-    .home_box {
-      text-align: center;
-      margin: auto;
-    }
-
-    .new-title-class {
-      font-size: 30px;
-      font-weight: bold;
-      margin-bottom: 50px;
-      margin-top: 50px;
-    }
-
-    .form-group {
-      margin-bottom: 50px;
-     }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 5px; 
-    }
-
-    .label-large {
-      font-size: 20px;
-      margin-right: 10px;
-    }
-   .btn {
-    display: inline-block;
-    padding: 10px 10px;
-    background-color: #333333;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 7px;
-    transition: background-color 0.3s ease;
-    }
-
-    .btn:hover {
-    background-color: #0056b3;
-    }
-  </style>
-
   <script>
     // Optional JavaScript to display the chat response dynamically
     const chatResponseElement = document.getElementById('chat-response');
+    const home = document.querySelector('.home');
     const form = document.querySelector('form');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const formData = new FormData(event.target);
       const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
       formData.append('authenticity_token', csrfToken);
+      home.innerHTML = '<lottie-player src="https://assets7.lottiefiles.com/packages/lf20_b2zmQW7tka.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>';
       const response = await fetch('/chats', {
         method: 'POST',
         body: formData,
       });
       const responseData = await response.text();
-      chatResponseElement.innerHTML = responseData;
+      home.innerHTML = '';
+
+      const chatResponse = JSON.parse(responseData);
+
+     const container = document.createElement('div');
+     container.classList.add('container');
+     container.classList.add('recommendations');
+
+      chatResponse.movies.forEach((movie, index) => {
+        const recommendationDiv = document.createElement('div');
+
+
+        recommendationDiv.classList.add('list-item');
+
+        const titleElement = document.createElement('h2');
+        titleElement.classList.add('item-title');
+        titleElement.textContent = `Recommendation ${index + 1}`;
+
+        const linkElement = document.createElement('img');
+        linkElement.classList.add('item-image');
+        linkElement.src = movie['poster_url'];
+        linkElement.alt = 'Movie Poster';
+
+        const movieTitleElement = document.createElement('h3');
+        movieTitleElement.classList.add('item-description');
+        movieTitleElement.textContent = movie['title'];
+
+        const movieYearElement = document.createElement('p');
+        movieYearElement.classList.add('item-description');
+        movieYearElement.textContent = movie['year'];
+
+        const movieRunTimeElement = document.createElement('p');
+        movieRunTimeElement.classList.add('item-description');
+        movieRunTimeElement.textContent = movie['runtime'];
+
+
+        const movieRatingElement = document.createElement('p');
+        movieRatingElement.classList.add('item-description');
+        movieRatingElement.textContent = movie['rating'];
+
+        const movieGenreElement = document.createElement('p');
+        movieGenreElement.classList.add('item-description');
+        movieGenreElement.textContent = movie['genre'];
+
+        const movieDescriptionElement = document.createElement('p');
+        movieDescriptionElement.classList.add('item-description');
+        movieDescriptionElement.textContent = movie['synopsis'];
+
+        console.log(movie);
+        console.log(movie['poster_url']);
+        recommendationDiv.appendChild(titleElement);
+        recommendationDiv.appendChild(linkElement);
+        recommendationDiv.appendChild(movieTitleElement);
+        recommendationDiv.appendChild(movieYearElement);
+        recommendationDiv.appendChild(movieRunTimeElement);
+        recommendationDiv.appendChild(movieRatingElement);
+        recommendationDiv.appendChild(movieGenreElement);
+        recommendationDiv.appendChild(movieDescriptionElement);
+
+        console.log(recommendationDiv);
+
+        container.appendChild(recommendationDiv);
+     });
+     document.body.append(container);
     });
   </script>
+
 <% else %>
-<div class="home">
-  <div class="home_box">
-    <h1 class="new-title-class">What you want to watch today?</h1>
-    <h3 class="sign-in-text">Sign in to get recommendations</h3>
-    <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary" %>
+  <div class="home-wtuser">
+    <div class="text-center">
+      <h1 class="new-title-class">Tired of wasting time trying to choose movies?</h1>
+      <%= link_to "Sign in to get recommendations", new_user_session_path, class: "btn btn-main" %>
+    </div>
   </div>
-</div>
-<% end %>
- <style>
-    /*body, html {
-      height: 100%;
-      margin: 0;''
-      padding: 0;
-    }*/
+  <% end %>
 
-  <style>
-  .home {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50%;
-  }
+    <style>
+      body, html {
+        height: 100%;
+        margin: 0;''
+        padding: 0;
+      }
 
-  .home_box {
-    text-align: center;
-    margin: auto;
-  }
+      .home {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50%;
+      }
 
-  .new-title-class {
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 50px;
-    margin-top: 100px;
-  }
+      .home_box {
+        text-align: center;
+        margin: auto;
+      }
 
-  .sign-in-text {
-    margin-bottom: 20px;
-  }
+      .new-title-class {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 50px;
+        margin-top: 50px;
+      }
 
-  .btn-primary {
-    display: inline-block;
-    padding: 10px 20px;
-    position: relative;
-    line-height: 40px;
-  }
-</style>
+      .form-group {
+        margin-bottom: 50px; /* Adicione uma margem inferior para separar as divs */
+        }
+
+      .form-group label {
+        display: block; /* Defina as labels como elementos de bloco para ocuparem a largura total */
+        margin-bottom: 5px; /* Adicione uma margem inferior para separar as labels dos text_fields */
+      }
+
+      .label-large {
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      .submit-button {
+        display: flex;
+        justify-content: center;
+      }
+    </style>

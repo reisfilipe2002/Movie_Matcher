@@ -2,7 +2,6 @@
 <div class="container">
 <h2 class="text-center mb-3">It's time to help us! What are your favorite movies?</h2>
 
-<a href="" class="text-center">Movies Selected <%=@favourite_movies.count%>/10</a>
 
 <%= form_with url: selection_path, method: :get, html: {class: "mb-4"} do |f| %>
   <%= f.text_field :query,
