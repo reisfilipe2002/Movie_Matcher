@@ -17,36 +17,52 @@ class ChatsController < ApplicationController
       Given the what was outlined above, and given the following list of films and questions, generate me a set of 20 recommendations.
       Favorite films:
       #{favs}
-    Always rember to be aware of the following:
-    Additional criteria:
-    1. Q. What genre you want to watch today?
-    A. #{params[:genre]}
-    2. Q. How important is the duration of the movie for you?
-    A. #{params[:duration]}
-    No matter what I want your answer to be only a list! Always formated like this(This is very important) with only the titles of the movies:
-    1.Title of the movie;
-    2.Title of the movie;
-    3.Title of the movie;
-    4.Title of the movie;
-    5.Title of the movie;
-    6.Title of the movie;
-    7.Title of the movie;
-    8.Title of the movie;
-    9.Title of the movie;
-    10.Title of the movie;
-    11.Title of the movie;
-    12.Title of the movie;
-    13.Title of the movie;
-    14.Title of the movie;
-    15.Title of the movie;
-    16.Title of the movie;
-    17.Title of the movie;
-    18.Title of the movie;
-    19.Title of the movie;
-    20.Title of the movie;"
+      Always rember to be aware of the following:
+      Additional criteria:
+      1. Q. What genre you want to watch today?
+      A. #{params[:genre]}
+      2. Q. How important is the duration of the movie for you?
+      A. #{params[:duration]}
+      No matter what I want your answer to be only a list! Always formated like this(This is very important) with only the titles of the movies:
+      1.Title of the movie;
+      2.Title of the movie;
+      3.Title of the movie;
+      4.Title of the movie;
+      5.Title of the movie;
+      6.Title of the movie;
+      7.Title of the movie;
+      8.Title of the movie;
+      9.Title of the movie;
+      10.Title of the movie;
+      11.Title of the movie;
+      12.Title of the movie;
+      13.Title of the movie;
+      14.Title of the movie;
+      15.Title of the movie;
+      16.Title of the movie;
+      17.Title of the movie;
+      18.Title of the movie;
+      19.Title of the movie;
+      20.Title of the movie;"
       @response = chat_service.chat(@message)
       titles = @response.scan(/\d+\. (.+)/).flatten
-      render plain: titles
+      movies = [ ]
+      titles.each do |title|
+        movie_results = Tmdb::Movie.search(title)
+        movie_id_tmdb = movie_results.first.id
+        posters = Tmdb::Movie.images(movie_id_tmdb)["posters"]
+        info = Tmdb::Movie.detail(movie_id_tmdb)
+        movies << {
+          title: title,
+          poster_url: "https://image.tmdb.org/t/p/w300#{posters.first['file_path']}",
+          year: info["release_date"].split("-")[0],
+          rating: info["vote_average"],
+          runtime: info["runtime"],
+          synopsis: info["overview"],
+          genre: info["genres"].first["name"]
+        }
+      end
+      render json: { movies: }
     end
   end
 end
