@@ -7,4 +7,8 @@ class ProfilesController < ApplicationController
     @favourite_movie = FavouriteMovie.new
     @favourite_movies = FavouriteMovie.where(user_id: current_user.id)
   end
+
+  def show
+    @user = current_user
+  end
 end
