@@ -4,7 +4,14 @@ class RecommendationsController < ApplicationController
   end
 
   def show
-    @recommendation = Recommendation.find(params[:id])
+    @recommendation = Recommendation.find_by(id: params[:id])
+
+    if @recommendation.nil?
+      # Redirecionar para uma página de erro, como a página inicial ou uma página específica de erro
+      redirect_to root_path, alert: "A recomendação não foi encontrada."
+    else
+      render 'recommendations/show'
+    end
   end
 
   def new

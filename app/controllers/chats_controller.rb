@@ -14,24 +14,39 @@ class ChatsController < ApplicationController
       3. The recommendations you generate must always include a film that is a a suboptimal match, in order to generate variety, but that suboptimal match should never occupy the top 3 position.
       4. Always include at least one older film (from 1920-1960) but it should never occupy the top 3 position unless the user has a preference for older films.
       5. Prioritize recommending genres that match the user's list most represented genres on their favorite films list.
-      Given the what was outlined above, and given the following list of films and questions, generate me a set of 5 recommendations.
+      Given the what was outlined above, and given the following list of films and questions, generate me a set of 20 recommendations.
       Favorite films:
       #{favs}
+    Always rember to be aware of the following:
     Additional criteria:
     1. Q. What genre you want to watch today?
     A. #{params[:genre]}
     2. Q. How important is the duration of the movie for you?
     A. #{params[:duration]}
-    I want your answer to be a list always formated this way Film: [Recommendation 1]
-    Genre: [Genre]
-    Year: [Year]
-    Director: [Director]
-    Main Cast: [Main Cast]
-    Awards: [Awards]
-    Rating: [Rating]
-    Runtime: [Runtime] minutes"
+    No matter what I want your answer to be only a list! Always formated like this(This is very important) with only the titles of the movies:
+    1.Title of the movie;
+    2.Title of the movie;
+    3.Title of the movie;
+    4.Title of the movie;
+    5.Title of the movie;
+    6.Title of the movie;
+    7.Title of the movie;
+    8.Title of the movie;
+    9.Title of the movie;
+    10.Title of the movie;
+    11.Title of the movie;
+    12.Title of the movie;
+    13.Title of the movie;
+    14.Title of the movie;
+    15.Title of the movie;
+    16.Title of the movie;
+    17.Title of the movie;
+    18.Title of the movie;
+    19.Title of the movie;
+    20.Title of the movie;"
       @response = chat_service.chat(@message)
-      render plain: @response
+      titles = @response.scan(/\d+\. (.+)/).flatten
+      render plain: titles
     end
   end
 end

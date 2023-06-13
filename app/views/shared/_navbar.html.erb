@@ -37,3 +37,74 @@
     </div>
   </div>
 </div>
+
+<nav class="mobile-bottom-nav p-4">
+  <% if user_signed_in? %>
+    <div class="mobile-bottom-nav__item mobile-bottom-nav__item--active">
+      <div class="mobile-bottom-nav__item-content">
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-house" style="color: #000000;"></i>
+        <% end %>
+        Home
+      </div>
+    </div>
+    <div class="mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <%= link_to selection_path(current_user) do%>
+          <i class="fa-solid fa-star" style="color: #000000;"></i>
+        <% end %>
+        Favorites
+      </div>
+    </div>
+    <div class="mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <%= link_to  do  %>
+          <i class="fa-solid fa-bookmark" style="color: #000000;"></i>
+        <% end %>
+        Watchlist
+      </div>
+    </div>
+
+    <div class="mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <%= link_to  do  %>
+          <i class="fa-solid fa-user" style="color: #000000;"></i>
+        <% end %>
+        Profile
+      </div>
+    </div>
+  <% else %>
+    <div class="mobile-bottom-nav__item mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <%= link_to root_path do %>
+          <i class="fa-solid fa-house" style="color: #000000;"></i>
+        <% end %>
+        Home
+      </div>
+    </div>
+    <div class="mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <%= link_to new_user_session_path do%>
+          <i class="fa-solid fa-star" style="color: #000000;"></i>
+        <% end %>
+        Favorites
+      </div>
+    </div>
+    <div class="mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <%= link_to new_user_session_path do  %>
+          <i class="fa-solid fa-bookmark" style="color: #000000;"></i>
+        <% end %>
+        Watchlist
+      </div>
+    </div>
+    <div class="mobile-bottom-nav__item">
+      <div class="mobile-bottom-nav__item-content">
+        <%= link_to new_user_session_path do %>
+          <i class="fa-solid fa-house" style="color: #000000;"></i>
+        <% end %>
+        Sign in
+      </div>
+    </div>
+  <% end %>
+</nav>

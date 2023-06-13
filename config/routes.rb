@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   post '/chats', to: 'chats#create'
+
+  resources :watchlists, only: [:index]
 end

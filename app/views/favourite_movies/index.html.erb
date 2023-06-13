@@ -1,1 +1,14 @@
-
+<h1 class="text-center mb-3">Your favorite movies</h1>
+<div class="grid-container">
+  <div class="grid-item">
+    <% @favourite_movies.each do |fav| %>
+      <div class="card text-center" style="width: 150px;">
+        <%= image_tag fav.movie.poster_url, class:"card-img-top"%>
+        <div class="card-body">
+          <h5 class="card-title"><%= fav.movie.title %></h5>
+          <a href="" ><i class="fa-sharp fa-solid fa-trash" style="color: #000000;"></i></a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
