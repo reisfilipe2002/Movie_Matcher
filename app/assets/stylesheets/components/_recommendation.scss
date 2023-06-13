@@ -51,7 +51,7 @@
   }
 
   .form-button {
-    background-color: #007BFF;
+    background-color: #333333;
     color: #FFF;
     padding: 10px 20px;
     border: none;
@@ -63,7 +63,6 @@
 // Estilos personalizados para a página "index" de recommendation
 .recommendation-index {
   .container {
-    //background-color: #F8F8F8;
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Exibir 4 colunas com largura igual */
