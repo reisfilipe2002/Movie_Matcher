@@ -1,6 +1,4 @@
-<h2 class="text-center mb-3">It's time to help us best select movies for you</h2>
-
-<h4 class="text-center">What are your favorite movies?</h4>
+<h2 class="text-center mb-3">It's time to help us! What are your favorite movies?</h2>
 
 <%= simple_form_for @favourite_movie do |f| %>
   <%= f.association :movies, collection: Movie.all %>
