@@ -1,79 +1,18 @@
-<div class="favourite-content">
-<h1>Your favorite movies</h1>
-</div>
-<div class="grid-container">
-  <div class="grid-item">
-    <% @favourite_movies.each do |fav| %>
-      <div class="card text-center" style="width: 150px;">
-        <%= image_tag fav.movie.poster_url, class:"card-img-top"%>
-        <div class="card-body">
-          <h5 class="card-title"><%= fav.movie.title %></h5>
-          <%= link_to  %>
-          <a href="" ><i class="fa-sharp fa-solid fa-trash" style="color: #000000;"></i></a>
-        </div>
-      </div>
-    <% end %>
+<div class="favorite-page">
+  <div class="container">
+    <h1 class="text-center">Your favorite movies</h1>
+    <div class="favorite-films">
+        <% @favourite_movies.each do |fav| %>
+          <div class="movie-card">
+            <%= image_tag fav.movie.poster_url, class:"card-img-top"%>
+            <div class="movie-infos">
+              <h5 class="card-title"><%= fav.movie.title %></h5>
+              <%= link_to favourite_movie_path(fav.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+                <i class="fa-sharp fa-solid fa-trash" style="color: #000000;"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+    </div>
   </div>
 </div>
-<div class="button-favourite">
-<%= link_to "Go to Home", home_path, class: "btn-favourite favourite-button" %>
-</div>
-
-<style>
-
-.favourite-content h1 {
-  position: absolute;
-  top: 120px;
-  /*left: 50%;*/
-  /*transform: translate(-50%, -50%);*/
-  text-align: center;
-  color: #333333;
-  margin-left: 40%; /* Ajuste o valor para mover mais para a direita */
-}
-
-.btn-favourite {
-  position: relative;
-  overflow: hidden;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #333333;
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-favourite::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 0;
-  background-color: #0069d9;
-  transition: height 0.3s ease;
-  z-index: -1;
-}
-
-.btn-favourite:hover::before {
-  height: 100%;
-  transform: translateY(100%);
-}
-
-.favourite-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-  border: none;
-  outline: none;
-}
-
-.button-favourite {
-  display: flex;
-  justify-content: center;
-  margin-top: 450px;
-}
-
-</style>

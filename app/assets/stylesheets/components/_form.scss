@@ -72,7 +72,7 @@
 .btn-signup {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #4F95DA;
+  background-color: #333333;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -81,8 +81,9 @@
   cursor: pointer;
 }
 
-.btn-signup:hover {
-  background-color: #3775B3;
+.btn-signup:hover::before {
+  height: 100%;
+  transform: translateY(100%);
 }
 
 .form-links {

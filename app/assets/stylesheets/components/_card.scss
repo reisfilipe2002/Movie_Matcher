@@ -1,7 +1,9 @@
 .movie-card {
 background-color: #fff;
-width: 225px;
+width: 250px;
 margin: 20px auto;
+min-height: 452px;
+max-height: 452px;
 border-radius: 8px;
 box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
 
@@ -16,9 +18,8 @@ img{
   justify-content: space-between;
   padding: 12px;
 
-  h2 {
+  h5 {
     color: #000;
-
   }
 
 }

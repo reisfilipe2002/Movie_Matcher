@@ -5,27 +5,33 @@
       <h1 class="new-title-class">What do you want to watch today?</h1>
 
       <%= form_with(url: '/chat', method: :post) do |form| %>
-        <div class="form-group">
-          <%= form.label :genre, "What genre you want to watch today?", class: "label-large" %>
-          <%= form.text_field :genre %>
-        </div>
-        <div class="form-group">
-          <%= form.label :duration, "How important duration is for you?", class: "label-large" %>
-          <%= form.text_field :duration %>
+        <div class="form-input">
+          <div class="form-group">
+            <%= form.label :genre, "What genre you want to watch today?", class: "label-large" %>
+            <%= form.text_field :genre, class:"w-100" %>
+          </div>
+          <div class="form-group">
+            <%= form.label :duration, "How important duration is for you?", class: "label-large" %>
+            <%= form.text_field :duration, class:"w-100" %>
+          </div>
         </div>
         <div class="form-group submit-button">
-          <%= form.submit 'Go to Recommendations', class: 'btn' %>
+          <%= form.submit 'Go to Recommendations', class: 'btn btn-recommendation' %>
         </div>
       <% end %>
       <div id="chat-response"></div>
     </div>
+    <div class="movies d-none">
+    </div>
   </div>
+
 
   <script>
     // Optional JavaScript to display the chat response dynamically
     const chatResponseElement = document.getElementById('chat-response');
     const home = document.querySelector('.home');
     const form = document.querySelector('form');
+    const movies = document.querySelector('.movies');
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const formData = new FormData(event.target);
@@ -42,120 +48,47 @@
 
       const chatResponse = JSON.parse(responseData);
 
-     const container = document.createElement('div');
-     container.classList.add('container');
-     container.classList.add('recommendations');
+      movies.classList.remove('d-none');
 
-      chatResponse.movies.forEach((movie, index) => {
-        const recommendationDiv = document.createElement('div');
-
-
-        recommendationDiv.classList.add('list-item');
-
-        const titleElement = document.createElement('h2');
-        titleElement.classList.add('item-title');
-        titleElement.textContent = `Recommendation ${index + 1}`;
-
-        const linkElement = document.createElement('img');
-        linkElement.classList.add('item-image');
-        linkElement.src = movie['poster_url'];
-        linkElement.alt = 'Movie Poster';
-
-        const movieTitleElement = document.createElement('h3');
-        movieTitleElement.classList.add('item-description');
-        movieTitleElement.textContent = movie['title'];
-
-        const movieYearElement = document.createElement('p');
-        movieYearElement.classList.add('item-description');
-        movieYearElement.textContent = movie['year'];
-
-        const movieRunTimeElement = document.createElement('p');
-        movieRunTimeElement.classList.add('item-description');
-        movieRunTimeElement.textContent = movie['runtime'];
-
-
-        const movieRatingElement = document.createElement('p');
-        movieRatingElement.classList.add('item-description');
-        movieRatingElement.textContent = movie['rating'];
-
-        const movieGenreElement = document.createElement('p');
-        movieGenreElement.classList.add('item-description');
-        movieGenreElement.textContent = movie['genre'];
-
-        const movieDescriptionElement = document.createElement('p');
-        movieDescriptionElement.classList.add('item-description');
-        movieDescriptionElement.textContent = movie['synopsis'];
-
+      chatResponse.movies.forEach((movie) => {
+        const movieInfo = `
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="${movie['poster_url']}" alt="Movie Poster" style="width:300px;height:300px;">
+              </div>
+              <div class="flip-card-back">
+                <h3>${movie['title']}</h3>
+                <p>Year: ${movie['year']}</p>
+                <p>Runtime: ${movie['runtime']} minutes</p>
+                <p>Rating: ${movie['rating']}</p>
+                <p>Genre: ${movie['genre']}</p>
+                <p>trailer: </p>
+                <a href="${movie['trailer']}" target="blank">trailer</a>
+                
+            </div>
+          </div>
+        `;
         console.log(movie);
-        console.log(movie['poster_url']);
-        recommendationDiv.appendChild(titleElement);
-        recommendationDiv.appendChild(linkElement);
-        recommendationDiv.appendChild(movieTitleElement);
-        recommendationDiv.appendChild(movieYearElement);
-        recommendationDiv.appendChild(movieRunTimeElement);
-        recommendationDiv.appendChild(movieRatingElement);
-        recommendationDiv.appendChild(movieGenreElement);
-        recommendationDiv.appendChild(movieDescriptionElement);
-
-        console.log(recommendationDiv);
-
-        container.appendChild(recommendationDiv);
+        console.log(movieInfo);
+        movies.innerHTML += movieInfo;
      });
-     document.body.append(container);
+        home.appendChild(movies);
     });
   </script>
 
 <% else %>
   <div class="home-wtuser">
     <div class="text-center">
-      <h1 class="new-title-class">Tired of wasting time trying to choose movies?</h1>
+      <h1 class="new-title-class ">Tired of wasting time trying to choose movies?</h1>
       <%= link_to "Sign in to get recommendations", new_user_session_path, class: "btn btn-main" %>
     </div>
   </div>
   <% end %>
 
-    <style>
-      body, html {
-        height: 100%;
-        margin: 0;''
-        padding: 0;
-      }
 
-      .home {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 50%;
-      }
 
-      .home_box {
-        text-align: center;
-        margin: auto;
-      }
-
-      .new-title-class {
-        font-size: 30px;
-        font-weight: bold;
-        margin-bottom: 50px;
-        margin-top: 50px;
-      }
-
-      .form-group {
-        margin-bottom: 50px; /* Adicione uma margem inferior para separar as divs */
-        }
-
-      .form-group label {
-        display: block; /* Defina as labels como elementos de bloco para ocuparem a largura total */
-        margin-bottom: 5px; /* Adicione uma margem inferior para separar as labels dos text_fields */
-      }
-
-      .label-large {
-        font-size: 20px;
-        margin-right: 10px;
-      }
-
-      .submit-button {
-        display: flex;
-        justify-content: center;
-      }
-    </style>
+<%#
+     <%= link_to recommendations_path(title: movie.title, user: current_user), data: { turbo_method: :post } do %>
+                  <%# <i class="fa-solid fa-bookmark" style="color: #ffffff;"></i>
+                <% end %>

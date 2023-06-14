@@ -1,16 +1,17 @@
 <div class="bg-black">
-<div class="container">
-<h2 class="text-center mb-3">It's time to help us! What are your favorite movies?</h2>
+  <div class="container">
+    <h2 class="text-center mb-3">It's time to help us! What are your favorite movies?</h2>
+    <a href="/favourite_movies" class="text-decoration-none"> <p class="text-white text-center">Movies selected <%= @favourite_movies.count %>/10</p></a>
 
 
-<%= form_with url: selection_path, method: :get, html: {class: "mb-4"} do |f| %>
-  <%= f.text_field :query,
-              placeholder: "Type a movie title",
-              class: "form-control",
-              value: params[:query]
-              %>
-<% end %>
+    <%= form_with url: selection_path, method: :get, html: {class: "mb-4"} do |f| %>
+      <%= f.text_field :query,
+                  placeholder: "Type a movie title",
+                  class: "form-control",
+                  value: params[:query]
+                  %>
+    <% end %>
 
-<%= render "list", movies: @movies%>
-</div>
+    <%= render "list", movies: @movies%>
+  </div>
 </div>
