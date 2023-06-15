@@ -2,6 +2,7 @@ class ChatsController < ApplicationController
   def create
     chat_service = ChatService.new
     favs = ""
+    @watchlist = Watchlist.where(user: current_user).first
     current_user.favourite_movies.each_with_index do |favorite_movie, index|
       favs = "#{favs}
       #{index + 1}. #{favorite_movie.movie.title}"
@@ -46,21 +47,24 @@ class ChatsController < ApplicationController
       20.Title of the movie;"
       @response = chat_service.chat(@message)
       titles = @response.scan(/\d+\. (.+)/).flatten
-      movies = [ ]
+      movies = []
       titles.each do |title|
         movie_results = Tmdb::Movie.search(title)
         movie_id_tmdb = movie_results.first.id
-        posters = Tmdb::Movie.images(movie_id_tmdb)["posters"]
+        posters = Tmdb::Movie.images(movie_id_tmdb, language: 'en-US')["posters"]
         info = Tmdb::Movie.detail(movie_id_tmdb)
-        movies << {
-          title: title,
-          poster_url: "https://image.tmdb.org/t/p/w300#{posters.first['file_path']}",
-          year: info["release_date"].split("-")[0],
-          rating: info["vote_average"],
-          runtime: info["runtime"],
-          synopsis: info["overview"],
-          genre: info["genres"].first["name"]
-        }
+        unless @watchlist.recommendations.map(&:title).include?(title)
+          movies << {
+            title:,
+            poster_url: "https://image.tmdb.org/t/p/original#{posters.first['file_path']}",
+            year: info["release_date"].split("-")[0],
+            rating: info["vote_average"],
+            runtime: info["runtime"],
+            trailer: "https://www.youtube.com/watch?v=#{Tmdb::Movie.trailers(movie_id_tmdb)["youtube"].first["source"]}",
+            genre: info["genres"].first["name"]
+          }
+        end
+        break if movies.size == 6
       end
       render json: { movies: }
     end

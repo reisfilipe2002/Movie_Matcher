@@ -11,7 +11,80 @@
   align-items: center;
   color: #fff;
 }
+.home{
+  background-color: #000;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
 
+// body, html {
+//   height: 100%;
+//   margin: 0;''
+//   padding: 0;
+// }
+
+
+
+.home_box {
+  text-align: center;
+  margin: auto;
+}
+
+.new-title-class {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.form-group {
+  margin-bottom: 50px; /* Adicione uma margem inferior para separar as divs */
+  }
+
+.form-group label {
+  display: flex; /* Defina as labels como elementos de bloco para ocuparem a largura total */
+  margin-bottom: 5px; /* Adicione uma margem inferior para separar as labels dos text_fields */
+  margin: 0 auto ;
+  justify-content: center;
+}
+
+.label-large {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+}
+.btn-recommendation{
+  color: #fff;
+  &:hover {
+    color: #e0c84e;
+  }
+}
+.form-input{
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.movies{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  padding-bottom: 72px;
+  gap: 20px;
+}
 // #preloader {
 //   position: fixed;
 //   left: 0;

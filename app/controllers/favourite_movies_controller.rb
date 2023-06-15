@@ -40,7 +40,7 @@ class FavouriteMoviesController < ApplicationController
   end
 
   def destroy
-    @favourite_movie = favouriteMovie.find(params[:id])
+    @favourite_movie = FavouriteMovie.find(params[:id])
     @favourite_movie.destroy
     redirect_to favourite_movies_url, notice: 'favourite movie was successfully destroyed.'
   end

@@ -1,20 +1,24 @@
-<div class="favourite-content">
-<h1>Your favorite movies</h1>
-</div>
-<div class="grid-container">
-  <div class="grid-item">
-    <% @favourite_movies.each do |fav| %>
-      <div class="card text-center" style="width: 150px;">
-        <%= image_tag fav.movie.poster_url, class:"card-img-top"%>
-        <div class="card-body">
-          <h5 class="card-title"><%= fav.movie.title %></h5>
-          <%= link_to  %>
-          <a href="" ><i class="fa-sharp fa-solid fa-trash" style="color: #000000;"></i></a>
-        </div>
-      </div>
-    <% end %>
+<div class="favorite-page">
+  <div class="container">
+    <h1 class="text-center">Your favorite movies</h1>
+    <div class="favorite-films">
+        <% @favourite_movies.each do |fav| %>
+          <div class="movie-card">
+            <%= image_tag fav.movie.poster_url, class:"card-img-top"%>
+            <div class="movie-infos">
+              <h5 class="card-title"><%= fav.movie.title %></h5>
+              <%= link_to favourite_movie_path(fav.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+                <i class="fa-sharp fa-solid fa-trash" style="color: #000000;"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+    </div>
   </div>
 </div>
+<<<<<<< HEAD
 <div class="button-favourite">
 <%= link_to "Go to Home", home_path, class: "btn-favourite favourite-button" %>
 </div>
+=======
+>>>>>>> master
