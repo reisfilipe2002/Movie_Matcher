@@ -13,6 +13,6 @@ class ProfilesController < ApplicationController
 
   def destroy
     current_user.destroy
-    redirect_to profile_path(current_user), notice: 'Profile successfully deleted.'
+    redirect_to root_path, notice: 'Profile successfully deleted.'
   end
 end

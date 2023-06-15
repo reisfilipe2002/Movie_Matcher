@@ -1,16 +1,16 @@
 <div class="bg-black">
   <div class="container">
-     <% if @movie_marks.empty?%>
+     <% if @movies.empty?%>
     <h1 class="text-center mb-3"style="color: white;">Your watchlist is empty</h1>
     <% else %>
       <h1 class="text-center mb-3">Your watchlist</h1>
       <div class="grid-container">
         <div class="grid-item">
-          <% @movie_marks.each do |watchlist| %>
+          <% @movies.each do |movie| %>
             <div class="card text-center" style="width: 150px;">
-              <%= image_tag watchlist.movie.poster_url, class:"card-img-top"%>
+              <%= image_tag movie[:poster_url], class:"card-img-top"%>
               <div class="card-body">
-                <h5 class="card-title"><%= watchlist.movie.title %></h5>
+                <h5 class="card-title"><%= movie[:title] %></h5>
                 <a href="" ><i class="fa-sharp fa-solid fa-trash" style="color: #000000;"></i></a>
               </div>
             </div>

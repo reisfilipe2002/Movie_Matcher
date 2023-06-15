@@ -21,18 +21,16 @@ class RecommendationsController < ApplicationController
   end
 
   def create
-    @recommendation = Recommendation.new(title: params[:title])
-    @recommendation.user = current_user
-    if @recommendation.save
-      redirect_to @recommendation, notice: 'Recommendation was successfully created.'
+    if current_user.watchlist.recommendations.include?(Recommendation.find_by(title: params[:title]))
+      redirect_to watchlists_path, flash: { alert: "Filme já está na sua lista!" }
     else
-      render :new
+      @recommendation = Recommendation.new(title: params[:title])
+      @recommendation.user = current_user
+      if @recommendation.save
+        redirect_to watchlists_path, flash: { notice: "Recomendação criada com sucesso!" }
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
-
-  # private
-
-  # def recommendation_params
-  #   params.require(:recommendation).permit(:title)
-  # end
 end
