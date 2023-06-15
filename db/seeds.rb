@@ -7,6 +7,10 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'csv'
 
+User.destroy_all
+Movie.destroy_all
+
+
 # Specify the path to your CSV file
 csv_file_path = 'db/data/movies.csv'
 
