@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :recommendations
   has_many :favourite_movies
   has_many :movies, through: :favourite_movies
-  has_one :watchlist
+  has_one :watchlist, dependent: :destroy
   has_one_attached :photo
   validates :email, presence: true, uniqueness: true
 

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :favourite_movies
   get 'users/:id/chooseafavorite', to: 'profiles#choose_favorite_movies', as: :selection
 
-  get 'profile/users/:id' => 'profiles#show', as: :profile
+  get '/profile', to: 'profiles#show', as: :profile
+  delete 'profiles/:id', to: 'profiles#destroy', as: :delete_profile
 
   devise_for :users
   root to: "pages#home"

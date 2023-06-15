@@ -9,6 +9,10 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @user = current_user
+  end
+
+  def destroy
+    current_user.destroy
+    redirect_to profile_path(current_user), notice: 'Profile successfully deleted.'
   end
 end
