@@ -15,10 +15,12 @@
             <%= form.text_field :duration, class:"w-100" %>
           </div>
         </div>
-        <div class="form-group submit-button">
-          <%= form.submit 'Go to Recommendations', class: 'btn btn-recommendation' %>
+        <div class="form-group home-page-button">
+          <%= form.submit 'Go to Recommendations', class: 'btn btn-home-page' %>
         </div>
       <% end %>
+
+
       <div id="chat-response"></div>
     </div>
     <div class="movies d-none">
@@ -99,7 +101,7 @@
 <% else %>
   <div class="home-wtuser">
     <div class="text-center">
-      <h1 class="new-title-class ">Tired of wasting time trying to choose movies?</h1>
+      <h1 class="new-title-class">Tired of wasting time trying to choose movies?</h1>
       <%= link_to "Sign in to get recommendations", new_user_session_path, class: "btn btn-main" %>
     </div>
   </div>

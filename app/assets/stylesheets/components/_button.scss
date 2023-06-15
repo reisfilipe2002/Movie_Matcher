@@ -164,3 +164,48 @@
   text-decoration: none;
   color: #fff;
 }
+
+
+// Home Page
+
+.form-group.home-page-button {
+  position: relative;
+  overflow: hidden;
+  margin-top: 40px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  color: #322c2c;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+  width: auto;
+}
+
+.form-group.home-page-button:last-child {
+  margin-right: 0;
+}
+
+.form-group.home-page-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: auto;
+  height: 0;
+  background-color: #8b8a8a;
+  transition: height 0.3s ease;
+  z-index: -1;
+}
+
+.form-group.home-page-button:hover::before {
+  height: 100%;
+  transform: translateY(100%);
+}
+
+.form-group.home-page-button a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+}
