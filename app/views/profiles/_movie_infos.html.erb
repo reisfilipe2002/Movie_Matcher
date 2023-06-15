@@ -5,12 +5,11 @@
     <p>No poster available</p>
   <% end %>
   <div class="movie-infos">
-    <h2><%= movie.title %></h2>
+    <h5><%= movie.title %></h5>
     <% if current_user.movies.include?(movie) %>
     <button type="button" class="movie-btn" disabled><i class="fas fa-check"></i></button>
     <% else %>
       <%= simple_form_for @favourite_movie  do |f| %>
-        <%# <%= f.association :movie, value: movie, include_hidden: true %>
         <%= f.hidden_field :movie_id, value: movie.id %>
         <%= button_tag :submit do %>
           <i class="fas fa-plus" aria-hidden="true"></i>

@@ -6,6 +6,8 @@
       justify-content: center;
       height: 50px;
       align-items: center;
+      position: sticky;
+      top: 0px;
 
 
   .navbar-logo {
@@ -24,7 +26,7 @@
   box-shadow: 0 -2px 5px -2px #333;
   background-color: #ffffff;
   width: 100vw;
-
+  z-index: 100;
 }
 .mobile-bottom-nav__item {
   flex-grow: 1;

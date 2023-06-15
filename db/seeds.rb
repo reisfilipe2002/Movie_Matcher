@@ -28,7 +28,7 @@ CSV.foreach(csv_file_path, headers: true).with_index(1) do |row, index|
     posters = Tmdb::Movie.images(movie_id_tmdb)["posters"]
 
     unless posters.empty?
-      poster_path = "https://image.tmdb.org/t/p/w225#{posters.first['file_path']}"
+      poster_path = "https://image.tmdb.org/t/p/w300#{posters.first['file_path']}"
       Movie.create!(title: title, poster_url: poster_path)
     end
   end
