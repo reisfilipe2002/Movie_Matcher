@@ -51,15 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_171802) do
     t.index ["user_id"], name: "index_favourite_movies_on_user_id"
   end
 
-  create_table "movie_marks", force: :cascade do |t|
-    t.bigint "movie_id", null: false
-    t.bigint "watchlist_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["movie_id"], name: "index_movie_marks_on_movie_id"
-    t.index ["watchlist_id"], name: "index_movie_marks_on_watchlist_id"
-  end
-
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -100,8 +91,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_171802) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favourite_movies", "movies"
   add_foreign_key "favourite_movies", "users"
-  add_foreign_key "movie_marks", "movies"
-  add_foreign_key "movie_marks", "watchlists"
   add_foreign_key "recommendations", "users"
   add_foreign_key "watchlists", "users"
 end

@@ -10,6 +10,7 @@ class WatchlistsController < ApplicationController
         @movies << {
           title: recommendation.title,
           poster_url: "https://image.tmdb.org/t/p/original#{posters.first['file_path']}",
+          id: recommendation.id
         }
     end
     @watchlist = Watchlist.where(user: current_user).first

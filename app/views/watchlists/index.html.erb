@@ -1,22 +1,20 @@
 <div class="bg-black">
-  <div class="container">
+  <div class="container pb-5">
      <% if @movies.empty?%>
     <h1 class="text-center mb-3"style="color: white;">Your watchlist is empty</h1>
     <% else %>
       <h1 class="text-center mb-3">Your watchlist</h1>
-      <div class="grid-container">
-        <div class="grid-item">
           <% @movies.each do |movie| %>
-            <div class="card text-center" style="width: 150px;">
+            <div class="card text-center my-5 mx-3">
               <%= image_tag movie[:poster_url], class:"card-img-top"%>
               <div class="card-body">
                 <h5 class="card-title"><%= movie[:title] %></h5>
-                <a href="" ><i class="fa-sharp fa-solid fa-trash" style="color: #000000;"></i></a>
+                <%= link_to recommendation_path(movie[:id]), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+                <i class="fa-sharp fa-solid fa-trash" style="color: #000000;"></i>
+              <% end %>
               </div>
             </div>
           <% end %>
-        </div>
-      </div>
     <% end %>
   </div>
 </div>
