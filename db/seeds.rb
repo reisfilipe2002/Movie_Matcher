@@ -14,7 +14,6 @@ csv_file_path = 'db/data/movies.csv'
 
 CSV.foreach(csv_file_path, headers: true).with_index(1) do |row, index|
   # Access data in each row using column names or indices
-  break if index > 200
 
   column2 = row['title']
   title = column2.split('(')[0].strip
