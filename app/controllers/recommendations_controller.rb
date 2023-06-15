@@ -1,4 +1,6 @@
 class RecommendationsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :create
+
   def index
     @recommendations = Recommendation.where(user_id: current_user.id)
   end
@@ -19,7 +21,8 @@ class RecommendationsController < ApplicationController
   end
 
   def create
-    @recommendation = Recommendation.new(recommendation_params)
+    @recommendation = Recommendation.new(title: params[:title])
+    @recommendation.user = current_user
     if @recommendation.save
       redirect_to @recommendation, notice: 'Recommendation was successfully created.'
     else
@@ -27,9 +30,9 @@ class RecommendationsController < ApplicationController
     end
   end
 
-  private
+  # private
 
-  def recommendation_params
-    params.require(:recommendation).permit(:title, :user_id)
-  end
+  # def recommendation_params
+  #   params.require(:recommendation).permit(:title)
+  # end
 end

@@ -32,6 +32,13 @@
     const home = document.querySelector('.home');
     const form = document.querySelector('form');
     const movies = document.querySelector('.movies');
+
+    const createRecommendation = async (title) =>{
+      fetch(`http://localhost:3000/recommendations?title=${title}`, {
+        method: "post"
+      });
+    }
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const formData = new FormData(event.target);
@@ -58,14 +65,14 @@
                 <img src="${movie['poster_url']}" alt="Movie Poster" style="width:300px;height:300px;">
               </div>
               <div class="flip-card-back">
-                <h3>${movie['title']}</h3>
+                <button class="recommendation-btn">Add to recommendations</button>
+                <h3 class="recommendation-title">${movie['title']}</h3>
                 <p>Year: ${movie['year']}</p>
                 <p>Runtime: ${movie['runtime']} minutes</p>
                 <p>Rating: ${movie['rating']}</p>
                 <p>Genre: ${movie['genre']}</p>
                 <p>trailer: </p>
                 <a href="${movie['trailer']}" target="blank">trailer</a>
-                
             </div>
           </div>
         `;
@@ -74,7 +81,19 @@
         movies.innerHTML += movieInfo;
      });
         home.appendChild(movies);
+
+        const recommendationButtons = document.getElementsByClassName("recommendation-btn");
+
+        Array.from(recommendationButtons).forEach((recommendationButton) => {
+          recommendationButton.addEventListener('click', (event) => {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const title = event.target.parentElement.querySelector(".recommendation-title").innerText;
+            createRecommendation(title);
+          })
+        });
     });
+
+
   </script>
 
 <% else %>
