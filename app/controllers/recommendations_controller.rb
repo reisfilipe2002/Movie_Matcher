@@ -33,4 +33,10 @@ class RecommendationsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @recommendation = Recommendation.find(params[:id])
+    @recommendation.destroy
+    redirect_to watchlists_path, notice: "Recommendation deleted from watchlist!"
+  end
 end

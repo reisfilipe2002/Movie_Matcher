@@ -1,14 +1,18 @@
 <div class="bg-black">
   <div class="container">
     <h2 class="text-white text-center">It's time to help us! What are your favorite movies?</h2>
-    <a href="/favourite_movies" class="text-decoration-none"> <p class="text-white text-center">Movies selected <%= @favourite_movies.count %>/10</p></a>
 
-    <%= form_with url: selection_path, method: :get, html: { class: "mb-4" } do |f| %>
-      <%= f.submit "Submit",
-                  class: "btn btn-primary",
-                  style: "width: 600px; height: 40px; font-size: 18px; margin: 0 auto; text-align: center;"
-      %>
+
+    <%= form_with url: selection_path, method: :get, html: {class: "mb-4"} do |f| %>
+      <%= f.text_field :query,
+                  placeholder: "Type a movie title",
+                  class: "form-control",
+                  value: params[:query]
+                  %>
     <% end %>
+    <div class="w-100 text-center">
+    <a href="/favourite_movies" class="text-decoration-none "> <button class="text-white text-center bg-black border-white py-3 px-4">Movies selected <%= @favourite_movies.count %>/10</button></a>
+    </div>
 
     <%= render "list", movies: @movies%>
   </div>

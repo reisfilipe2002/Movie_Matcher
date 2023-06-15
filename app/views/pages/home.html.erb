@@ -36,7 +36,7 @@
     const movies = document.querySelector('.movies');
 
     const createRecommendation = async (title) =>{
-      fetch(`http://localhost:3000/recommendations?title=${title}`, {
+      fetch(`https://moviematcher.herokuapp.com/recommendations?title=${title}`, {
         method: "post"
       });
     }
@@ -64,17 +64,18 @@
           <div class="flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
-                <img src="${movie['poster_url']}" alt="Movie Poster" style="width:300px;height:300px;">
+                <img src="${movie['poster_url']}" alt="Movie Poster" style="width:300px;height:400px;">
               </div>
-              <div class="flip-card-back">
-                <button class="recommendation-btn">Add to Watchlist</button>
+              <div class="flip-card-back mt-4">
                 <h3 class="recommendation-title">${movie['title']}</h3>
                 <p>Year: ${movie['year']}</p>
                 <p>Runtime: ${movie['runtime']} minutes</p>
                 <p>Rating: ${movie['rating']}</p>
                 <p>Genre: ${movie['genre']}</p>
-                <p>trailer: </p>
-                <a href="${movie['trailer']}" target="blank">trailer</a>
+                <a href="${movie['trailer']}" target="blank" class="text-decoration-none"><button class="border-white px-3 py-2 bg-black text-white">Watch trailer</button></a>
+                <div class="mt-3">
+                  <button class="recommendation-btn px-3 py-2">Add to Watchlist</button>
+                </div>
             </div>
           </div>
         `;

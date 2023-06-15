@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :recommendations, only: [:index, :show, :new, :create]
+  resources :recommendations, only: [:index, :show, :new, :create, :destroy]
   resources :favourite_movies
   get 'users/:id/chooseafavorite', to: 'profiles#choose_favorite_movies', as: :selection
 
